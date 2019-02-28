@@ -1,0 +1,27 @@
+Data Structures and Algorithms
+
+References:
+CPP Reference - general library information
+CPlusPlus.com - general library information
+Stack Overflow
+
+C/C++ Lecture Notes I - Raymond Mitchell - UCSD Extension
+C/C++ Lecture Notes II - Raymond Mitchell - UCSD Extension
+C/C++ Lecture Notes III - Raymond Mitchell III - UCSD Extension
+C/C++ Lecture Notes IV - Raymond Mitchell III - UCSD Extension
+
+Copy Constructor with dynamically allocated 2d array
+https://stackoverflow.com/questions/33393435/copy-constructor-of-dynamic-two-dimensional-array/33393517
+
+checking for out of bounds with 2D array when looking for neighbors
+https://stackoverflow.com/questions/652106/finding-neighbours-in-a-two-dimensional-array
+
+copy swap for arrays
+https://stackoverflow.com/questions/3279543/what-is-the-copy-and-swap-idiom
+
+// Random number generation c++ way
+http://www.cplusplus.com/forum/general/69862/
+
+
+Multi-platform detection - possibly implement
+https://stackoverflow.com/questions/8666378/detect-windows-or-linux-in-c-c
