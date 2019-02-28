@@ -1,21 +1,29 @@
-//
-//  Map.hpp
-//  GameOfLife
-//
-//  Created by Donner Hanson on 2/19/19.
-//  Copyright © 2019 Donner Hanson. All rights reserved.
-//
+//================================================================
+// Author      : Donner Hanson
+// Date        : 02/27/2019
+// Email       : hanso127@mail.chapman.edu
+// Course      : Data Structures and Algorithms
+// Course #    : CPSC-350-2
+// Project Name: Game Of Life
+// File Name   : Map.cpp
+// Assignment  : Assignment 2
+// Version     : 0.3
+// Instructor  : Rene German
+// Description : Outline of map calculation and draw functions
+//================================================================
 
 #ifndef Map_hpp
 #define Map_hpp
 
 #include "Cell.hpp"
+#include <iostream>
 
 // base abstract/virtual class map
 class Map
 {
+    friend ostream& operator << (ostream& out, const Map &map);
 public:
-    Map(int rows, int cols, int mode) : rows(rows), cols(cols), previousTotalNeighbors(0), totalNeighbors(1), mode(mode)
+    Map(int rows, int cols, int gridMode) : rows(rows), cols(cols), previousTotalNeighbors(0), totalNeighbors(1), gridMode(gridMode)
     {
         TD_Array = Allocate(rows, cols);
     }
@@ -25,6 +33,7 @@ public:
         Destroy_2D(TD_Array, rows, cols);
     }
     void draw(); // draws a map
+    void draw(fstream& out); // draw passed string
     int getTotalNeighbors(){return totalNeighbors;}
     bool cellExists();
     Cell** Allocate(int row, int col);
@@ -34,16 +43,17 @@ public:
     
     void playGod();
     
-    string to_str();
+    string to_str()const;
 private:
     int totalNeighbors;
     int previousTotalNeighbors;
     Cell **TD_Array;
     int rows;
     int cols;
-    int mode;
+    int gridMode;
     
 };
+ostream& operator << (ostream& out, const Map &map);
 
 #endif /* Map_hpp */
 

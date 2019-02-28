@@ -1,15 +1,23 @@
-//
-//  Map.cpp
-//  GameOfLifeTwo
-//
-//  Created by Donner Hanson on 2/25/19.
-//  Copyright © 2019 Donner Hanson. All rights reserved.
-//
+//================================================================
+// Author      : Donner Hanson
+// Date        : 02/27/2019
+// Email       : hanso127@mail.chapman.edu
+// Course      : Data Structures and Algorithms
+// Course #    : CPSC-350-2
+// Project Name: Game Of Life
+// File Name   : Map.cpp
+// Assignment  : Assignment 2
+// Version     : 0.3
+// Instructor  : Rene German
+// Description : Map calculations and draw to board etc
+//================================================================
 
 #include "Map.hpp"
 
 
 #include <iostream>
+#include <sstream>
+
 
 const int MIRROR_EDGE = 1;
 
@@ -33,7 +41,7 @@ void Map::draw()
 Cell** Map::Allocate(int row, int col)
 {
     Cell ** ptr = new Cell*[row+1];
-    for(int i = 0; i <= row; i++)
+    for(int i(0); i <= row; i++)
     {
         ptr[i] = new Cell[col];
     }
@@ -41,7 +49,7 @@ Cell** Map::Allocate(int row, int col)
 }
 void Map::Destroy_2D(Cell** ptr, int row, int col)
 {
-    for(int i = 0; i < row+1; i++)
+    for(int i (0); i <= row; i++)
     {
         delete [] ptr[i];
     }
@@ -50,7 +58,7 @@ void Map::Destroy_2D(Cell** ptr, int row, int col)
 
 void Map::fillMap(string& line)
 {
-    int num = 0;
+    int num(0);
     for (int i(0); i < rows; i++)
         for (int j(0); j < cols; j++, num++)
         {
@@ -67,16 +75,13 @@ void Map::calculateTotalNeighbors()
     int currentNeighbors(0);
     totalNeighbors = currentNeighbors;
     // reset the number of neighbors in each cell
-    for (int i (0); i < rows; i++)
+    for (int i(0); i < rows; i++)
     {
-        for (int j (0); j < cols; j++)
+        for (int j(0); j < cols; j++)
         {
             TD_Array[i][j].setNumNeighbors(0);
         }
     }
-    //cout << "\ntotal neighbors before calculations: " << totalNeighbors << "\n\n";
-    
-    
     for (int currRow(0); currRow < rows; currRow++)
     {
         // Row Directions
@@ -90,7 +95,7 @@ void Map::calculateTotalNeighbors()
                 /**************************************************/
                 /*                      DONUT                     */
                 /**************************************************/
-                if (mode == 2)
+                if (gridMode == 2)
                 {
                     // CHECK TOP ROW
                     if (currRow == 0)
@@ -316,7 +321,7 @@ void Map::calculateTotalNeighbors()
                 /***************************************************/
                 /*                 START - MIRROR                  */
                 /***************************************************/
-                if(mode == 3)
+                if(gridMode == 3)
                 {
                     // MIRRORS AFFECT THE CELLS AROUND IT
                     // [vertical][horizontal]
@@ -399,7 +404,6 @@ void Map::calculateTotalNeighbors()
                         }
                     
                 }
-                //cout << "\n";
                 /***************************************************/
                 /*                 END - MIRROR                    */
                 /***************************************************/
@@ -465,13 +469,11 @@ void Map::calculateTotalNeighbors()
                 /*                 END - NORMAL                    */
                 /***************************************************/
                 TD_Array[currRow][currCol].setNumNeighbors(currentNeighbors);
-                //cout << currentNeighbors;
                 TD_Array[currRow][currCol].setWillLive();
                 totalNeighbors += currentNeighbors;
                 currentNeighbors = 0;
             }
         }
-        //cout << "\n";
     }
 }
 
@@ -487,7 +489,7 @@ void Map::playGod()
     }
 }
 
-string Map::to_str()
+string Map::to_str() const
 {
     string str;
     for (int i (0); i < rows; i++)
@@ -496,6 +498,13 @@ string Map::to_str()
         {
             str+=TD_Array[i][j].getLiveVal();
         }
+        str+="\n";
     }
     return str;
+}
+
+ostream& operator << (ostream& out, const Map &map)
+{
+    out << map.to_str();
+    return out;
 }

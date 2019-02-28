@@ -7,14 +7,14 @@
 // Project Name: Game Of Life
 // File Name   : FileHandler.cpp
 // Assignment  : Assignment 2
-// Version     : 0
+// Version     : 0.3
 // Instructor  : Rene German
 // Description : functions to open and close a file
 //================================================================
 
 #include <iostream>
 #include <string>
-
+#include <fstream>
 #include "FileHandler.hpp"
 
 using namespace std;
@@ -29,20 +29,20 @@ bool FileHandler::SafeOpenRead(ifstream& inFile, string fileName)
         cout << "file opened successfully\n";
         return true;
     }
-    cout << "Failed to open file or file was empty!\n";
     return false;
 }
-bool FileHandler::SafeOpenOutput(ofstream& outFile, string fileName)
+fstream& FileHandler::SafeOpenOutput(fstream& outFile, string fileName)
 {
     outFile.open(fileName, ios::out);
     
     if(outFile.is_open())
     {
-        cout << "file opened successfully\n";
-        return true;
+        cout << "File opened successfully\n";
+        
     }
-    cout << "Failed to open file or file was empty!\n";
-    return false;
+    else
+        cout << "Failed to open file or file was empty!\n";
+    return outFile;
 }
 
 bool FileHandler::fileIsBlank(ifstream& inFile)

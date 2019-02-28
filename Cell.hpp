@@ -1,14 +1,21 @@
-//
-//  Cell.hpp
-//  GameOfLife
-//
-//  Created by Donner Hanson on 2/19/19.
-//  Copyright © 2019 Donner Hanson. All rights reserved.
-//
+//================================================================
+// Author      : Donner Hanson
+// Date        : 02/27/2019
+// Email       : hanso127@mail.chapman.edu
+// Course      : Data Structures and Algorithms
+// Course #    : CPSC-350-2
+// Project Name: Game Of Life
+// File Name   : Cell.cpp
+// Assignment  : Assignment 2
+// Version     : 0.3
+// Instructor  : Rene German
+// Description : Cell class outline
+//================================================================
 
 #ifndef Cell_hpp
 #define Cell_hpp
 
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -16,6 +23,8 @@ using namespace std;
 class Cell
 {
     friend ostream& operator << (ostream& out, const Cell& cell);
+//    friend ofstream& operator << (ofstream& out, const Cell& cell);
+
     friend bool operator==(const Cell &cellOne, const Cell &cellTwo);
     friend bool operator!=(const Cell &cellOne, const Cell &cellTwo);
 public:
@@ -53,6 +62,7 @@ private:
 bool operator==(const Cell& cellOne, const Cell& cellTwo);
 bool operator!=(const Cell& cellOne, const Cell& cellTwo);
 ostream& operator << (ostream& out, const Cell& cell);
+//ostream& operator << (ostream& out, const Cell& cell);
 
 #endif /* Cell_hpp */
 

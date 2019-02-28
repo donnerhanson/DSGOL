@@ -1,11 +1,16 @@
-//
-//  UserInterface.cpp
-//  GameOfLife
-//
-//  Created by Donner Hanson on 2/19/19.
-//  Copyright © 2019 Donner Hanson. All rights reserved.
-//
-
+//================================================================
+// Author      : Donner Hanson
+// Date        : 02/27/2019
+// Email       : hanso127@mail.chapman.edu
+// Course      : Data Structures and Algorithms
+// Course #    : CPSC-350-2
+// Project Name: Game Of Life
+// File Name   : UserInterface.cpp
+// Assignment  : Assignment 2
+// Version     : 0.3
+// Instructor  : Rene German
+// Description : General Questions to ask user and process input
+//================================================================
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -25,8 +30,9 @@ const string ASK_PAUSE = "Press:\n1: Pause between generations\n2: Run simulatio
 const string MAP_FORMAT =  "File must contain formatting of height width and map layout:\n5\n7\n---X--X\n-X--X--\n-----XX\nX-X-X--\n-----XX\n";
 const string ASK_FILE = "Enter file path....\n";
 
-const string TEST_FILE = "/Users/Donner/Documents/workspace1/GameOfLife/GameOfLife/mapdonut.txt";
-string UserInterface::GetFileName()
+const string TEST_FILE_IN = "/Users/Donner/Documents/workspace1/GameOfLife/GameOfLife/mapdonut.txt";
+const string TEST_FILE_OUT = "/Users/Donner/Documents/workspace1/GameOfLifeTwo/GameOfLifeTwo/GOLresults.txt";
+string UserInterface::GetInFileName()
 {
     string fileName;
     cout << ASK_FILE;
@@ -34,7 +40,7 @@ string UserInterface::GetFileName()
     // if the filename is greater than zero
     // if user dragged file sometimes there is
     // ending whitespace in string
-    fileName = TEST_FILE;
+    //fileName = TEST_FILE_IN;
     if (fileName.size() > 0 && isNotWS(fileName))
     {
         while(fileName.at(fileName.size()-1) == '\n' ||
@@ -44,7 +50,29 @@ string UserInterface::GetFileName()
             fileName.pop_back();
         }
     }
-    cout << fileName << "\n";
+    cout << "entered file: " << fileName << "\n";
+    return fileName;
+}
+
+string UserInterface::GetOutFileName()
+{
+    string fileName;
+    cout << ASK_FILE;
+    getline(cin, fileName);
+    // if the filename is greater than zero
+    // if user dragged file sometimes there is
+    // ending whitespace in string
+    // fileName = TEST_FILE_OUT;
+    if (fileName.size() > 0 && isNotWS(fileName))
+    {
+        while(fileName.at(fileName.size()-1) == '\n' ||
+              fileName.at(fileName.size()-1) == ' ')
+        {
+            // remove ending whitespace
+            fileName.pop_back();
+        }
+    }
+    cout << "entered file: " << fileName << "\n";
     return fileName;
 }
 
@@ -158,7 +186,7 @@ void UserInterface::askMode()
 {
     cout << ASK_MODE;
 }
-void UserInterface::askPause()
+void UserInterface::askOutputMode()
 {
     cout << ASK_PAUSE;
 }

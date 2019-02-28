@@ -7,7 +7,7 @@
 // Project Name: Game Of Life
 // File Name   : FileHandler.cpp
 // Assignment  : Assignment 2
-// Version     : 0
+// Version     : 0.3
 // Instructor  : Rene German
 // Description : header functions to open and close a file
 //================================================================
@@ -28,7 +28,7 @@ public:
     bool SafeOpenRead(ifstream& inFile, string fileName);
     bool fileIsBlank(ifstream& inFile);
     bool isNotWS(const string &str);
-    bool SafeOpenOutput(ofstream& inFile, string fileName);
+    fstream& SafeOpenOutput(fstream& inFile, string fileName);
 private:
 };
 

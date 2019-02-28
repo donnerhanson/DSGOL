@@ -1,0 +1,34 @@
+Donut
+
+Gen: 0
+X--XX
+X--XX
+-----
+-----
+X--XX
+
+Gen: 1
+-XX--
+X--X-
+----X
+----X
+X--X-
+
+Gen: 2
+XXXX-
+XXXXX
+X--XX
+X--XX
+XXXXX
+
+Gen: 3
+-----
+-----
+-----
+-----
+-----
+
+
+All life has died!
+Stabilized...
+
