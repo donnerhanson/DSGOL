@@ -7,17 +7,16 @@
 // Project Name: Game Of Life
 // File Name   : main.cpp
 // Assignment  : Assignment 2
-// Version     : 0.3
+// Version     : 0.4
 // Instructor  : Rene German
 // Description : main
 //================================================================
 
-#include <random>       // discreet distribution
-#include <iterator>     // discreet distribution
-
 #include <fstream>      // file out
+#include <iterator>     // discreet distribution
 #include <iostream>     // console io
 #include <limits>       // numericlimits<streamsize>::max
+#include <random>       // discreet distribution
 #include <string>       // string
 
 #include "FileHandler.hpp"
@@ -104,13 +103,16 @@ int main(int argc, const char * argv[])
             float frequencyAlive;
             cout << "\n";
             // living is 'X' dead is '-'
-            // prompt for a decimal value (greater than 0 and less than or equal to 1)
-            cout << "enter percentage to be alive (decimal greater than 0 and less than or equal to 1): ";
+            // prompt for a decimal value (greater than 0 and
+            // less than or equal to 1)
+            cout << "enter percentage to be alive (decimal greater than 0 and "
+             << "less than or equal to 1): ";
             cin >> frequencyAlive;
             // ignore anything remaining in cin stream so 
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
             cout <<"\n";
-            // Randomly generate the initial cell configuration using the dimension and density inputs.
+            // Randomly generate the initial cell configuration using the
+            // dimension and density inputs.
             fullText = GenerateRand(length, frequencyAlive);
         }
         // non file out mode

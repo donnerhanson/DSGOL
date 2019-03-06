@@ -7,24 +7,21 @@
 // Project Name: Game Of Life
 // File Name   : Map.cpp
 // Assignment  : Assignment 2
-// Version     : 0.3
+// Version     : 0.4
 // Instructor  : Rene German
 // Description : Map calculations and draw to board etc
 //================================================================
 
-#include "Map.hpp"
-
-
 #include <iostream>
 #include <sstream>
 
+#include "Map.hpp"
 
 const int MIRROR_EDGE = 1;
 
 using namespace std;
 
 void Map::draw()
-
 {
     int num = 0;
     for (int i(0); i < rows; i++, num++)
@@ -37,10 +34,9 @@ void Map::draw()
         cout << "\n";
     }
 }
-
 Cell** Map::Allocate(int row, int col)
 {
-    Cell ** ptr = new Cell*[row+1];
+    Cell** ptr = new Cell*[row+1];
     for(int i(0); i <= row; i++)
     {
         ptr[i] = new Cell[col];
@@ -55,7 +51,6 @@ void Map::Destroy_2D(Cell** ptr, int row, int col)
     }
     delete [] ptr;
 }
-
 void Map::fillMap(string& line)
 {
     int num(0);
@@ -66,9 +61,6 @@ void Map::fillMap(string& line)
             TD_Array[i][j].setIsAlive(line.at(num));
         }
 }
-
-
-
 void Map::calculateTotalNeighbors()
 {
     // reset/calculate neighbors
@@ -86,11 +78,11 @@ void Map::calculateTotalNeighbors()
     {
         // Row Directions
         int up(currRow - 1), down(currRow + 1), bottom(rows - 1), top(0);
-        // Column Directions
-        
         for (int currCol(0); currCol < cols; currCol++)
         {
-            int farLeft(0), farRight(cols - 1) ,left(currCol - 1), right(currCol + 1);
+            // Column Directions
+            int farLeft(0), farRight(cols - 1) ,
+                left(currCol - 1), right(currCol + 1);
             {
                 /**************************************************/
                 /*                      DONUT                     */
@@ -134,7 +126,6 @@ void Map::calculateTotalNeighbors()
                         //if top i.e. [i][j] = [0][0 <j < cols-1]
                         if(currCol > 0 && currCol < cols - 1)
                         {
-                            
                             // check bottom same column [rows - 1][j]
                             if (TD_Array[bottom][currCol].checkIsAlive())
                             {
@@ -157,32 +148,27 @@ void Map::calculateTotalNeighbors()
                             // left top corner[0][0]
                             if (TD_Array[top][farLeft].checkIsAlive())
                             {
-                                //cout << "left top corner alive\n";
                                 currentNeighbors++;
                             }
                             
                             // left top one row down [1][0]
                             if (TD_Array[1][farLeft].checkIsAlive())
                             {
-                                //                                cout << "left top corner down one row alive\n";
                                 currentNeighbors++;
                             }
                             // check left bottom corner[rows-1][0],
                             if (TD_Array[bottom][farLeft].checkIsAlive())
                             {
-                                //                                cout << "left bottom corner alive\n";
                                 currentNeighbors++;
                             }
                             // right bottom corner [rows - 1][ cols - 1]
                             if (TD_Array[bottom][farRight].checkIsAlive())
                             {
-                                //                                cout << "right bottom corner alive\n";
                                 currentNeighbors++;
                             }
                             // right bottom corner over one [rows - 1][cols - 2]
                             if (TD_Array[bottom][farRight- 1].checkIsAlive())
                             {
-                                //                                cout << "right bottom corner over one alive\n";
                                 currentNeighbors++;
                             }
                         }
@@ -234,7 +220,6 @@ void Map::calculateTotalNeighbors()
                     // CHECK BOTTOM ROW
                     if (currRow == bottom)
                     {
-                        
                         // LEFT BOTTOM CORNER [rows-1][0]
                         if (currCol == farLeft)
                         {
@@ -314,7 +299,6 @@ void Map::calculateTotalNeighbors()
                         }
                     }
                 }
-                // cout << currentNeighbors;
                 /***************************************************/
                 /*                 END - DONUT                     */
                 /***************************************************/
@@ -326,83 +310,86 @@ void Map::calculateTotalNeighbors()
                     // MIRRORS AFFECT THE CELLS AROUND IT
                     // [vertical][horizontal]
                     
-                    // if alive is edge top +1              [0][j]
+                    // if alive is edge top +1 [0][j]
                     if (currRow == top && TD_Array[top][currCol].checkIsAlive())
                     {
                         currentNeighbors+=MIRROR_EDGE;
                     }
-                    
-                    // if alive is edge top next to current right +1              [0][j+1]
+                    // if alive is edge top next to current right +1   [0][j+1]
                     if (currCol < farRight)
-                        if (currRow == top && TD_Array[top][right].checkIsAlive())
+                        if (currRow == top &&
+                            TD_Array[top][right].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
-                    // if mirror reflection alive is edge top next to current right +1              [0][j-1]
+                    // if mirror reflection alive is edge top next to
+                    // current right +1 [0][j-1]
                     if (currCol > farLeft)
-                        if (currRow == top && TD_Array[top][left].checkIsAlive())
+                        if (currRow == top &&
+                            TD_Array[top][left].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
-                    
-                    
-                    // if alive is edge side left +1        [i][0]
-                    if (currCol == farLeft && TD_Array[currRow][farLeft].checkIsAlive())
+                    // if alive is edge side left +1 [i][0]
+                    if (currCol == farLeft &&
+                        TD_Array[currRow][farLeft].checkIsAlive())
                     {
                         currentNeighbors+=MIRROR_EDGE;
                     }
                     // if mirror reflection is alive above
                     if (currRow > top)
-                        if (currCol == farLeft && TD_Array[up][farLeft].checkIsAlive())
+                        if (currCol == farLeft &&
+                            TD_Array[up][farLeft].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
                     // if mirror reflection is alive below
                     if (currRow < bottom)
-                        if (currCol == farLeft && TD_Array[down][farLeft].checkIsAlive())
+                        if (currCol == farLeft &&
+                            TD_Array[down][farLeft].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
-                    
-                    
-                    
-                    // if alive is edge bottom +1           [rows - 1][j]
-                    if (currRow == bottom && TD_Array[bottom][currCol].checkIsAlive())
+                    // if alive is edge bottom +1 [rows - 1][j]
+                    if (currRow == bottom &&
+                        TD_Array[bottom][currCol].checkIsAlive())
                     {
                         currentNeighbors+=MIRROR_EDGE;
                     }
                     // check left reflection
                     if (currCol > farLeft)
-                        if (currRow == bottom && TD_Array[bottom][left].checkIsAlive())
+                        if (currRow == bottom &&
+                            TD_Array[bottom][left].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
                     // check right reflection
                     if (currCol < farRight)
-                        if (currRow == bottom && TD_Array[bottom][right].checkIsAlive())
+                        if (currRow == bottom &&
+                            TD_Array[bottom][right].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
-                    
-                    
-                    // if alive is edge side right +1       [i][cols - 1]
-                    if (currCol == farRight && TD_Array[currRow][farRight].checkIsAlive())
+                    // if alive is edge side right +1 [i][cols - 1]
+                    if (currCol == farRight &&
+                        TD_Array[currRow][farRight].checkIsAlive())
                     {
                         currentNeighbors+=MIRROR_EDGE;
                     }
                     // check up
                     if (currRow > top)
-                        if (currCol == farRight && TD_Array[up][farRight].checkIsAlive())
+                        if (currCol == farRight &&
+                            TD_Array[up][farRight].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
                     // check down
                     if (currRow < bottom)
-                        if (currCol == farRight && TD_Array[down][farRight].checkIsAlive())
+                        if (currCol == farRight &&
+                            TD_Array[down][farRight].checkIsAlive())
                         {
                             currentNeighbors+=MIRROR_EDGE;
                         }
-                    
                 }
                 /***************************************************/
                 /*                 END - MIRROR                    */
@@ -414,7 +401,8 @@ void Map::calculateTotalNeighbors()
                 {
                     if (currCol >= 1)
                     {
-                        if (TD_Array[up][left].checkIsAlive()) // left upper corner
+                        // left upper corner
+                        if (TD_Array[up][left].checkIsAlive())
                         {
                             currentNeighbors++;
                         }
@@ -425,7 +413,8 @@ void Map::calculateTotalNeighbors()
                     }
                     if (currCol < farRight)
                     {
-                        if(TD_Array[up][right].checkIsAlive()) // right upper corner
+                        // right upper corner
+                        if(TD_Array[up][right].checkIsAlive())
                         {
                             currentNeighbors++;
                         }
@@ -448,7 +437,8 @@ void Map::calculateTotalNeighbors()
                 {
                     if (currCol > farLeft)
                     {
-                        if(TD_Array[down][left].checkIsAlive()) // left lower corner
+                        // left lower corner
+                        if(TD_Array[down][left].checkIsAlive())
                         {
                             currentNeighbors++;
                         }
@@ -460,7 +450,8 @@ void Map::calculateTotalNeighbors()
                 }
                 if (currRow < bottom && currCol < farRight )
                 {
-                    if (TD_Array[down][right].checkIsAlive()) // right lower corner
+                    // right lower corner
+                    if (TD_Array[down][right].checkIsAlive())
                     {
                         currentNeighbors++;
                     }
@@ -476,7 +467,6 @@ void Map::calculateTotalNeighbors()
         }
     }
 }
-
 void Map::playGod()
 {
     // set value to value determined if willLive
@@ -488,7 +478,6 @@ void Map::playGod()
         }
     }
 }
-
 string Map::to_str() const
 {
     string str;
@@ -502,7 +491,6 @@ string Map::to_str() const
     }
     return str;
 }
-
 ostream& operator << (ostream& out, const Map &map)
 {
     out << map.to_str();

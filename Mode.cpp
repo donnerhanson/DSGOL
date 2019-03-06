@@ -37,6 +37,8 @@ const int SLEEP = 1;
 const int SLEEP_TIME = 2;
 const int ENTER_TO_CONT = 2;
 
+// enable max file iteration loop if do not want
+// to keep running infinitely to file
 const int MAX_FILE_ITERATIONS = 3000;
 
 
@@ -145,7 +147,6 @@ void Mode::run(FileHandler& out, const string& outFileName)
         // check to see if there are any alive first
         if (!(preCheck == 0))
         {
-            
             // RUN TO INFINITY UNLESS DEAD OR STAGNANT
             // break cases in loop -
             // swap this for non infinite
@@ -154,7 +155,6 @@ void Mode::run(FileHandler& out, const string& outFileName)
             {
                 // calculate
                 map->calculateTotalNeighbors();
-                
                 // adjust life
                 map->playGod();
                 strTwo = map->to_str();
@@ -163,19 +163,16 @@ void Mode::run(FileHandler& out, const string& outFileName)
                     outFile << "\nLife has ceased to progress!\n";
                     break;
                 }
-                
                 // draw to screen
                 outFile << "Gen: " << ++i << "\n";
                 outFile << *map;
                 outFile << "\n";
-                
                 map->calculateTotalNeighbors();
                 if (map->getTotalNeighbors() == 0)
                 {
                     outFile << "\nAll life has died!\n";
                     break;
                 }
-                
                 // swap string data
                 strOne = strTwo;
             }

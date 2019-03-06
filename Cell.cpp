@@ -79,15 +79,6 @@ int Cell::getNumNeighbors()const
 {
     return numNeighbors;
 }
-bool operator==(const Cell& cellOne, const Cell& cellTwo)
-{
-    // return if the same address
-    return cellOne.getNumNeighbors() == cellTwo.getNumNeighbors();
-}
-bool operator!=(const Cell& cellOne, const Cell& cellTwo)
-{
-    return !(cellOne==cellTwo);
-}
 ostream& operator << (ostream& out, const Cell &cell)
 {
     out << cell.lifeVal;

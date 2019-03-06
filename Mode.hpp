@@ -29,8 +29,8 @@ using namespace std;
 class Mode
 {
 public:
-    Mode(int rows, int cols, int outputMode, string fullText, int gridMode): rows(rows),cols(cols), outputMode(outputMode), fullText(fullText), gridMode(gridMode){};
-    
+    Mode(int rows, int cols, int outputMode, string fullText, int gridMode): rows(rows),cols(cols), outputMode(outputMode),
+        fullText(fullText), gridMode(gridMode){};
     void run();
     void run(FileHandler& out, const string &outFile);
 private:

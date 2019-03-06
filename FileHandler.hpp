@@ -7,14 +7,13 @@
 // Project Name: Game Of Life
 // File Name   : FileHandler.cpp
 // Assignment  : Assignment 2
-// Version     : 0.3
+// Version     : 0.4
 // Instructor  : Rene German
 // Description : header functions to open and close a file
 //================================================================
 
 #ifndef FileHandler_hpp
 #define FileHandler_hpp
-
 
 #include <fstream>
 #include <iostream>

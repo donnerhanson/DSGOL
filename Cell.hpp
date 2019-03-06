@@ -23,10 +23,6 @@ using namespace std;
 class Cell
 {
     friend ostream& operator << (ostream& out, const Cell& cell);
-//    friend ofstream& operator << (ofstream& out, const Cell& cell);
-
-    friend bool operator==(const Cell &cellOne, const Cell &cellTwo);
-    friend bool operator!=(const Cell &cellOne, const Cell &cellTwo);
 public:
     Cell(bool willLive)
     {
@@ -59,10 +55,7 @@ private:
     int numNeighbors;
     char lifeVal;
 };
-bool operator==(const Cell& cellOne, const Cell& cellTwo);
-bool operator!=(const Cell& cellOne, const Cell& cellTwo);
 ostream& operator << (ostream& out, const Cell& cell);
-//ostream& operator << (ostream& out, const Cell& cell);
 
 #endif /* Cell_hpp */
 

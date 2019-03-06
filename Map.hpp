@@ -15,15 +15,18 @@
 #ifndef Map_hpp
 #define Map_hpp
 
-#include "Cell.hpp"
 #include <iostream>
+
+#include "Cell.hpp"
+
 
 // base abstract/virtual class map
 class Map
 {
     friend ostream& operator << (ostream& out, const Map &map);
 public:
-    Map(int rows, int cols, int gridMode) : rows(rows), cols(cols), previousTotalNeighbors(0), totalNeighbors(1), gridMode(gridMode)
+    Map(int rows, int cols, int gridMode) : rows(rows), cols(cols),
+    previousTotalNeighbors(0), totalNeighbors(1), gridMode(gridMode)
     {
         TD_Array = Allocate(rows, cols);
     }

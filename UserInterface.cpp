@@ -11,6 +11,7 @@
 // Instructor  : Rene German
 // Description : General Questions to ask user and process input
 //================================================================
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -24,14 +25,24 @@ using namespace std;
 const string ASK_ONE_TWO = "Please enter 1 or 2...\n";
 const string ASK_ONE_TWO_THREE = "Please enter 1, 2, or 3...\n";
 // Direct Questions
-const string ASK_MAP_OR_RAND = "Press:\n1: To provide your own map\n2: Randomly generate simulation\nFollowed by return....\n";
-const string ASK_MODE = "Press:\n1: Classic\n2: Doughnut\n3: Mirror\nFollowed by return...\n";
-const string ASK_PAUSE = "Press:\n1: Pause between generations\n2: Run simulation pressing enter between generations\n3: Output to a file\nFollowed by return...\n";
-const string MAP_FORMAT =  "File must contain formatting of height width and map layout:\n5\n7\n---X--X\n-X--X--\n-----XX\nX-X-X--\n-----XX\n";
+const string ASK_MAP_OR_RAND = "Press:\n1: To provide your own map\n"
+                                    "2: Randomly generate simulation\n"
+                                    "Followed by return....\n";
+const string ASK_MODE = "Press:\n1: Classic\n2: Doughnut\n3: Mirror\n"
+                            "Followed by return...\n";
+const string ASK_PAUSE = "Press:\n1: Pause between generations\n"
+                            "2: Run simulation pressing enter between"
+                            " generations\n3: Output to a file\n"
+                            "Followed by return...\n";
+const string MAP_FORMAT =  "File must contain formatting of height width "
+                                "and map layout:\n5\n7\n---X--X\n-X--X--\n"
+                                "-----XX\nX-X-X--\n-----XX\n";
 const string ASK_FILE = "Enter file path....\n";
 
-const string TEST_FILE_IN = "/Users/Donner/Documents/workspace1/GameOfLife/GameOfLife/mapdonut.txt";
-const string TEST_FILE_OUT = "/Users/Donner/Documents/workspace1/GameOfLifeTwo/GameOfLifeTwo/GOLresults.txt";
+const string TEST_FILE_IN = "/Users/Donner/Documents/workspace1/"
+                            "GameOfLife/GameOfLife/mapdonut.txt";
+const string TEST_FILE_OUT = "/Users/Donner/Documents/workspace1"
+                                "/GameOfLifeTwo/GameOfLifeTwo/GOLresults.txt";
 string UserInterface::GetInFileName()
 {
     string fileName;
